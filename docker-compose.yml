@@ -1,36 +1,29 @@
 services:
     eureukaserver:
-      image: openjdk:18-jdk-alpine3.14
       build:
-        context: eureukaserver
-        dockerfile: "./../Dockerfiles/eureukaserver.Dockerfile"
+        dockerfile: "./Dockerfiles/eureukaserver.Dockerfile"
       ports: 
         - 9091:9091
       networks:
         - sharednetwork
 
     microservice1:
-      image: openjdk:18-jdk-alpine3.14
       build:
-        context: microservice1
-        dockerfile: "./../Dockerfiles/microservice1.Dockerfile"
+        dockerfile: "./Dockerfiles/microservice1.Dockerfile"
       ports: 
         - 9090:9090
       networks:
         - sharednetwork
     
     microservice2:
-      image: openjdk:18-jdk-alpine3.14
       build:
-        context: microservice2
-        dockerfile: "./../Dockerfiles/microservice2.Dockerfile"
+        dockerfile: "./Dockerfiles/microservice2.Dockerfile"
       ports: 
         - 8081:8081
       networks:
         - sharednetwork
 
     dbCommand:
-      image: postgres:latest
       ports: 
         - 5432:5432
       build:
@@ -38,7 +31,6 @@ services:
       networks:
         - sharednetwork
     dbFournisseurs:
-      image: postgres:latest
       ports: 
         - 5433:5433
       build:
@@ -46,12 +38,10 @@ services:
       networks:
         - sharednetwork
     apigatewayzuul:
-      image: openjdk:18-jdk-alpine3.14
       ports: 
         - 8765:8765
       build:
-        context: zuulgateway
-        dockerfile: "./../Dockerfiles/zuulgateway.Dockerfile"
+        dockerfile: "./Dockerfiles/zuulgateway.Dockerfile"
       networks:
         - sharednetwork
 
