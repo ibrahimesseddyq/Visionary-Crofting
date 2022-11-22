@@ -4,6 +4,9 @@ services:
         dockerfile: "./Dockerfiles/eureukaserver.Dockerfile"
       ports: 
         - 9091:9091
+      env_file:
+        - eureukaserver.env
+
       networks:
         - sharednetwork
 
@@ -12,6 +15,9 @@ services:
         dockerfile: "./Dockerfiles/microservice1.Dockerfile"
       ports: 
         - 9090:9090
+      env_file:
+        - microservice1.env
+
       networks:
         - sharednetwork
     
@@ -20,6 +26,9 @@ services:
         dockerfile: "./Dockerfiles/microservice2.Dockerfile"
       ports: 
         - 8081:8081
+      env_file:
+        - microservice2.env
+
       networks:
         - sharednetwork
 
@@ -28,6 +37,8 @@ services:
         - 5432:5432
       build:
         dockerfile: "./Dockerfiles/dbCommand.Dockerfile"
+      env_file:
+        - dbCommand.env
       networks:
         - sharednetwork
     dbFournisseurs:
@@ -35,6 +46,8 @@ services:
         - 5433:5433
       build:
         dockerfile: "./Dockerfiles/dbFournisseurs.Dockerfile"
+      env_file:
+        - dbFournisseurs.env
       networks:
         - sharednetwork
     apigatewayzuul:
@@ -42,6 +55,9 @@ services:
         - 8765:8765
       build:
         dockerfile: "./Dockerfiles/zuulgateway.Dockerfile"
+      env_file:
+        - zuulgateway.env
+
       networks:
         - sharednetwork
 
